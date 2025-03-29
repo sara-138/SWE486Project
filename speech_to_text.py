@@ -2,24 +2,21 @@ import azure.cognitiveservices.speech as speechsdk
 import time
 import os
 import psutil  # For monitoring system resource usage
-from pydub import AudioSegment  # For audio format conversion
+import librosa  # For audio file processing
 
 # Azure Speech API key and region
 subscription_key = "Ca0879Tngsx97WcFb2hijYztIgBiRUXCFYD4gW9a6ME4n078WXWKJQQJ99BCACF24PCXJ3w3AAAYACOGcsYZ"
 region = "uaenorth"
 
-# Convert MP3 to WAV if needed
-def convert_mp3_to_wav(mp3_file):
-    wav_file = mp3_file.replace(".mp3", ".wav")  # Output WAV filename
-    audio = AudioSegment.from_mp3(mp3_file)
-    audio = audio.set_frame_rate(16000).set_channels(1).set_sample_width(2)  # Ensure correct format
-    audio.export(wav_file, format="wav")
-    return wav_file
-
-# Get audio file length in seconds
+# Get audio file length in seconds using librosa
 def get_audio_length(audio_file):
-    audio = AudioSegment.from_file(audio_file)
-    return len(audio) / 1000  # Convert milliseconds to seconds
+    try:
+        y, sr = librosa.load(audio_file, sr=None)  # Load audio with librosa
+        duration = librosa.get_duration(y=y, sr=sr)  # Get duration in seconds
+        return duration
+    except Exception as e:
+        print(f"Error loading audio file {audio_file}: {e}")
+        return 0
 
 # Initialize the Azure Speech SDK client
 def initialize_speech_recognition_client(audio_file):
@@ -34,24 +31,22 @@ def initialize_speech_recognition_client(audio_file):
 
 # Function to get system resource usage
 def get_system_resource_usage():
-    cpu_usage = psutil.cpu_percent(interval=1)
-    memory_usage = psutil.virtual_memory().percent
-    return cpu_usage, memory_usage
+    try:
+        cpu_usage = psutil.cpu_percent(interval=1)
+        memory_usage = psutil.virtual_memory().percent
+        return cpu_usage, memory_usage
+    except Exception as e:
+        print(f"Error monitoring system resources: {e}")
+        return 0, 0
 
 # Function for speech recognition
 def recognize_speech(audio_file, result_file):
-    # Convert MP3 to WAV if needed
-    if audio_file.lower().endswith(".mp3"):
-        print(f"Converting {audio_file} to WAV...")
-        audio_file = convert_mp3_to_wav(audio_file)
-
     # Get audio length
     audio_length = get_audio_length(audio_file)
     
     speech_recognizer = initialize_speech_recognition_client(audio_file)
     
     if speech_recognizer:
-        print(f"Starting speech recognition for {audio_file}...")
 
         # Measure total response time (including network latency)
         total_start_time = time.time()
@@ -94,7 +89,7 @@ def recognize_speech(audio_file, result_file):
 # Main function
 if __name__ == "__main__":
     result_file = "speech_recognition_results.txt"  # File to save the results
-    audio_files = ["your_audio_file1.mp3", "your_audio_file2.wav"]  # List your audio files here
+    audio_files = ["AudioWAV\\34sec.wav", "AudioWAV\\45sec.wav", "AudioWAV\\60sec.wav", "AudioWAV\\LDC2004S13.wav"]
     
     # Clear previous results from the text file
     open(result_file, "w").close()
