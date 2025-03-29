@@ -1,0 +1,28 @@
+Recognized Speech: Good morning, doctor. Hello, Sir. Have a seat, please. OK. Thank you.
+Audio Length: 34.09 seconds
+Inference Time: 1.651 seconds
+Response Time: 1.651 seconds
+CPU Usage: 0.6%
+Memory Usage: 59.9%
+==================================================
+Recognized Speech: May I see your passport and boarding pass?
+Audio Length: 44.74 seconds
+Inference Time: 1.045 seconds
+Response Time: 1.045 seconds
+CPU Usage: 1.4%
+Memory Usage: 60.0%
+==================================================
+Recognized Speech: Good morning.
+Audio Length: 60.07 seconds
+Inference Time: 0.609 seconds
+Response Time: 0.609 seconds
+CPU Usage: 1.0%
+Memory Usage: 60.0%
+==================================================
+Recognized Speech: Hello. Hello. Hi. This is Dina. Hi, I'm Donna. Hi. So do you have pets? No. Oh.
+Audio Length: 120.00 seconds
+Inference Time: 3.415 seconds
+Response Time: 3.415 seconds
+CPU Usage: 0.0%
+Memory Usage: 60.0%
+==================================================
