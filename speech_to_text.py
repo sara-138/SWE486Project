@@ -47,7 +47,6 @@ def recognize_speech(audio_file, result_file):
     speech_recognizer = initialize_speech_recognition_client(audio_file)
     
     if speech_recognizer:
-
         # Measure total response time (including network latency)
         total_start_time = time.time()
 
@@ -89,13 +88,21 @@ def recognize_speech(audio_file, result_file):
 # Main function
 if __name__ == "__main__":
     result_file = "speech_recognition_results.txt"  # File to save the results
-    audio_files = ["AudioWAV\\34sec.wav", "AudioWAV\\45sec.wav", "AudioWAV\\60sec.wav", "AudioWAV\\LDC2004S13.wav"]
-    
+
+    # Use platform-independent paths
+    audio_folder = "AudioWAV"
+    audio_filenames = ["34sec.wav", "45sec.wav", "60sec.wav", "LDC2004S13.wav"]
+    audio_files = [os.path.join(audio_folder, name) for name in audio_filenames]
+
     # Clear previous results from the text file
     open(result_file, "w").close()
 
     # Process selected audio files
     for audio_file in audio_files:
+        if not os.path.exists(audio_file):
+            print(f"⚠️ File not found: {audio_file}")
+            continue
         recognize_speech(audio_file, result_file)
 
-    print(f"Results saved to {result_file}")
+    print(f"✅ Results saved to {result_file}")
+
