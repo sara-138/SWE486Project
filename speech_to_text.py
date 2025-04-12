@@ -2,6 +2,7 @@ import azure.cognitiveservices.speech as speechsdk
 import time
 import os
 import librosa  # For audio file processing
+import requests  # For network latency measurement
 
 # Azure Speech API key and region
 subscription_key = "Ca0879Tngsx97WcFb2hijYztIgBiRUXCFYD4gW9a6ME4n078WXWKJQQJ99BCACF24PCXJ3w3AAAYACOGcsYZ"
@@ -26,6 +27,17 @@ def initialize_speech_recognition_client(audio_file):
         return speech_recognizer
     except Exception as e:
         print(f"Error initializing Speech SDK: {e}")
+        return None
+
+# Measure network latency to Azure STT endpoint
+def get_network_latency():
+    try:
+        start = time.time()
+        requests.get("https://uaenorth.stt.speech.microsoft.com", timeout=5)
+        end = time.time()
+        return round(end - start, 3)
+    except Exception as e:
+        print(f"Error measuring network latency: {e}")
         return None
 
 # Speech recognition with continuous recognition
@@ -69,8 +81,9 @@ def recognize_speech(audio_file, result_file):
     inference_end_time = time.time()
     total_end_time = time.time()
 
-    inference_time = inference_end_time - inference_start_time
     response_time = total_end_time - total_start_time
+    network_latency = get_network_latency()
+    inference_time = response_time - network_latency if network_latency is not None else response_time
 
     # Save results
     with open(result_file, "a", encoding="utf-8") as f:
@@ -83,6 +96,7 @@ def recognize_speech(audio_file, result_file):
         f.write(f"Audio Length: {audio_length:.2f} seconds\n")
         f.write(f"Inference Time: {inference_time:.3f} seconds\n")
         f.write(f"Response Time: {response_time:.3f} seconds\n")
+        f.write(f"Network Latency: {network_latency if network_latency is not None else 'N/A'} seconds\n")
         f.write("="*50 + "\n")
 
 # Main function

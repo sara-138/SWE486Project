@@ -1,40 +1,48 @@
 Recognized Speech: I think I've seen this before.
 Audio Length: 2.84 seconds
-Inference Time: 1.516 seconds
+Inference Time: 1.187 seconds
 Response Time: 1.516 seconds
+Network Latency: 0.329 seconds
 ==================================================
 Recognized Speech: Now I'd like to talk about space. Did you learn about space as a child? Yes, I learned about it in science. I learned a lot of things about space.
 Audio Length: 10.30 seconds
-Inference Time: 3.025 seconds
-Response Time: 3.025 seconds
+Inference Time: 2.549 seconds
+Response Time: 3.023 seconds
+Network Latency: 0.474 seconds
 ==================================================
 Recognized Speech: I'd like to talk about social media now. What do you use social media for? I really love taking photos and sharing them on Instagram and Facebook. I also use it to stay in touch with friends. For me, it's like a window into each other's lives and that helps me feel connected.
 Audio Length: 20.27 seconds
-Inference Time: 8.060 seconds
-Response Time: 8.060 seconds
+Inference Time: 7.674 seconds
+Response Time: 8.066 seconds
+Network Latency: 0.392 seconds
 ==================================================
 Recognized Speech: Do you use your mobile phone mainly for work or for personal reasons? I would say it's about 5050. I do use it for work related tasks like sending emails, making calls and messaging colleagues if I'm working from home. In my free time I use it to scroll through social media and to do day-to-day things like banking and checking train times or the weather forecast.
 Audio Length: 29.56 seconds
-Inference Time: 12.595 seconds
-Response Time: 12.595 seconds
+Inference Time: 12.131 seconds
+Response Time: 12.599 seconds
+Network Latency: 0.468 seconds
 ==================================================
 Recognized Speech: Good morning, doctor. Hello, Sir. Have a seat, please. OK. Thank you. How can I help you today? I haven't been feeling well lately. I'm sorry to hear that. What seems to be the problem? I have a headache and a sore throat. I see. Have you had a fever or any other symptoms? Yes, I have had a slight fever and somebody aches. OK, let me check your temperature and ask you a few more questions. OK, Doctor, Thank you.
 Audio Length: 34.09 seconds
-Inference Time: 14.630 seconds
-Response Time: 14.630 seconds
+Inference Time: 14.153 seconds
+Response Time: 14.620 seconds
+Network Latency: 0.467 seconds
 ==================================================
 Recognized Speech: May I see your passport and boarding pass? Sure. Here you go. Thank you. What's the purpose of your visit? I'm here on vacation. How long will you be staying? I'll be here for one week. Do you have a return ticket? Yes, I do. Here it is. Thank you. Have you visited before? No, this is my first time. Are you carrying any restricted items? No, just my clothes and personal items. OK, everything's in order. Enjoy your stay. Thank you. You're welcome.
 Audio Length: 44.74 seconds
-Inference Time: 19.676 seconds
-Response Time: 19.676 seconds
+Inference Time: 19.708 seconds
+Response Time: 20.164 seconds
+Network Latency: 0.456 seconds
 ==================================================
 Recognized Speech: Good morning. Good morning. Where are you traveling to today? I'm traveling to London. How long do you plan to stay? I'll be there for a week just for vacation. May I have your passport please? Sure, Here you go. Thank you. How many bags are you checking in today? Just one. Do you have any carry on luggage? Yes, I have a small backpack. OK, here's your passport back and here is your boarding pass. Your flight leaves from gate 12. Have a safe flight. Thank you very much. Have a great day, follow for more. 
 Audio Length: 60.07 seconds
-Inference Time: 27.738 seconds
-Response Time: 27.738 seconds
+Inference Time: 27.069 seconds
+Response Time: 27.715 seconds
+Network Latency: 0.646 seconds
 ==================================================
 Recognized Speech: Hello. Hello. Hi. This is Dina. Hi, I'm Donna. Hi. So do you have pets? No. Oh. Yeah, I do. I have three dogs. Oh, OK. And I have a bunch of fish. Oh, yeah, I've. I have a black lab. He's 80 lbs, big guy. And then I have two little dogs. They're terrier mixes. So we used to have a dog. Oh, really? What type? Yeah, it was a bagel. Oh, and it passed away. No, we moved and couldn't have a have a dog anymore, so gave it some. Gave it to some friends of ours. Oh. So is it still alive? Have you ever seen it or. She's still still alive, still doing good. Oh, that's good. And you have a dog where you live now or no? I no not where I am now I can't have 10. Do you have any pets there or? No, not anymore. Oh, used to have a dog and a cat and fish and. Hit em all. Oh, do you miss them or not? Well, a little bit. I don't miss the, the California, the dog carrots anymore all over the furniture. Yeah, I know. Oh yeah, 'cause Spiegels, they will. They're they're small like my, my, my two small dogs. They think, you know, they can go on anything and then. The puppy was in my lab who's 80 lbs and he he learned from the 2 little guys that he can go on anything too. Yeah, they seem to think they can. Yeah, he's so. Yeah. He. He thinks he's a little dog also. He doesn't understand that, you know, he's so much bigger than them, but. Yeah, I 'cause we he's and he's a handful. I never had a puppy before. Oh, really? It was a challenge with a puppy. I had basically no idea what I was in for and I would never do it again. Did you have your Beagle from a puppy or? Yeah, we did. And did you was was it like chewing everything when it was a puppy or? No, It's pretty good. You never really chewed anything. Oh, really? Yeah, he was pretty good. You know, to go outside to go the bathroom and everything.
 Audio Length: 120.00 seconds
-Inference Time: 56.972 seconds
-Response Time: 56.972 seconds
+Inference Time: 56.869 seconds
+Response Time: 57.441 seconds
+Network Latency: 0.572 seconds
 ==================================================
