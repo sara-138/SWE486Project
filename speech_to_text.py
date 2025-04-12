@@ -91,7 +91,7 @@ if __name__ == "__main__":
 
     # Use platform-independent paths
     audio_folder = "AudioWAV"
-    audio_filenames = ["34sec.wav", "45sec.wav", "60sec.wav", "LDC2004S13.wav"]
+    audio_filenames = ["2sec.wav","10sec.wav","20sec.wav","30sec.wav","34sec.wav", "45sec.wav", "60sec.wav", "LDC2004S13.wav"]
     audio_files = [os.path.join(audio_folder, name) for name in audio_filenames]
 
     # Clear previous results from the text file

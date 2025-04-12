@@ -1,28 +1,56 @@
+Recognized Speech: I think I've seen this before.
+Audio Length: 2.84 seconds
+Inference Time: 1.180 seconds
+Response Time: 1.180 seconds
+CPU Usage: 6.1%
+Memory Usage: 69.0%
+==================================================
+Recognized Speech: Now I'd like to talk about space. Did you learn about space as a child? Yes, I learn about it in science. I learn a lot of things about space.
+Audio Length: 10.30 seconds
+Inference Time: 13.933 seconds
+Response Time: 13.933 seconds
+CPU Usage: 11.0%
+Memory Usage: 68.5%
+==================================================
+Recognized Speech: I'd like to talk about social media now. What do you use social media for? I really love taking photos and sharing them on Instagram and Facebook. I also use it to stay in touch with friends. For me, it's like a window into each other lives and that helps me feel connected.
+Audio Length: 20.27 seconds
+Inference Time: 8.972 seconds
+Response Time: 8.972 seconds
+CPU Usage: 11.3%
+Memory Usage: 68.4%
+==================================================
+Recognized Speech: Do you use your mobile phone mainly for work or for personal reasons? I would say it's about 5050. I do use it for work related tasks like sending emails, making calls and messaging colleagues if I'm working from home.
+Audio Length: 29.56 seconds
+Inference Time: 6.616 seconds
+Response Time: 6.616 seconds
+CPU Usage: 4.9%
+Memory Usage: 68.5%
+==================================================
 Recognized Speech: Good morning, doctor. Hello, Sir. Have a seat, please. OK. Thank you.
 Audio Length: 34.09 seconds
-Inference Time: 1.726 seconds
-Response Time: 1.726 seconds
-CPU Usage: 19.2%
-Memory Usage: 81.8%
+Inference Time: 2.181 seconds
+Response Time: 2.181 seconds
+CPU Usage: 6.8%
+Memory Usage: 68.6%
 ==================================================
 Recognized Speech: May I see your passport and boarding pass?
 Audio Length: 44.74 seconds
-Inference Time: 1.431 seconds
-Response Time: 1.431 seconds
-CPU Usage: 3.2%
-Memory Usage: 79.6%
+Inference Time: 1.238 seconds
+Response Time: 1.238 seconds
+CPU Usage: 17.0%
+Memory Usage: 68.5%
 ==================================================
 Recognized Speech: Good morning.
 Audio Length: 60.07 seconds
-Inference Time: 0.891 seconds
-Response Time: 0.891 seconds
-CPU Usage: 19.1%
-Memory Usage: 82.2%
+Inference Time: 3.362 seconds
+Response Time: 3.362 seconds
+CPU Usage: 5.3%
+Memory Usage: 68.6%
 ==================================================
 Recognized Speech: Hello. Hello. Hi. This is Dina. Hi, I'm Donna. Hi. So do you have pets? No. Oh.
 Audio Length: 120.00 seconds
-Inference Time: 3.397 seconds
-Response Time: 3.397 seconds
-CPU Usage: 5.6%
-Memory Usage: 81.4%
+Inference Time: 3.462 seconds
+Response Time: 3.462 seconds
+CPU Usage: 6.2%
+Memory Usage: 68.7%
 ==================================================
