@@ -1,7 +1,6 @@
 import azure.cognitiveservices.speech as speechsdk
 import time
 import os
-import psutil  # For monitoring system resource usage
 import librosa  # For audio file processing
 
 # Azure Speech API key and region
@@ -11,8 +10,8 @@ region = "uaenorth"
 # Get audio file length in seconds using librosa
 def get_audio_length(audio_file):
     try:
-        y, sr = librosa.load(audio_file, sr=None)  # Load audio with librosa
-        duration = librosa.get_duration(y=y, sr=sr)  # Get duration in seconds
+        y, sr = librosa.load(audio_file, sr=None)
+        duration = librosa.get_duration(y=y, sr=sr)
         return duration
     except Exception as e:
         print(f"Error loading audio file {audio_file}: {e}")
@@ -29,75 +28,76 @@ def initialize_speech_recognition_client(audio_file):
         print(f"Error initializing Speech SDK: {e}")
         return None
 
-# Function to get system resource usage
-def get_system_resource_usage():
-    try:
-        cpu_usage = psutil.cpu_percent(interval=1)
-        memory_usage = psutil.virtual_memory().percent
-        return cpu_usage, memory_usage
-    except Exception as e:
-        print(f"Error monitoring system resources: {e}")
-        return 0, 0
-
-# Function for speech recognition
+# Speech recognition with continuous recognition
 def recognize_speech(audio_file, result_file):
-    # Get audio length
     audio_length = get_audio_length(audio_file)
-    
     speech_recognizer = initialize_speech_recognition_client(audio_file)
     
-    if speech_recognizer:
-        # Measure total response time (including network latency)
-        total_start_time = time.time()
+    if not speech_recognizer:
+        return
 
-        # Measure inference time
-        inference_start_time = time.time()
-        result = speech_recognizer.recognize_once()
-        inference_end_time = time.time()
+    recognized_text = []
 
-        # Measure total response time
-        total_end_time = time.time()
+    def handle_final_result(evt):
+        if evt.result.reason == speechsdk.ResultReason.RecognizedSpeech:
+            recognized_text.append(evt.result.text)
+        elif evt.result.reason == speechsdk.ResultReason.NoMatch:
+            recognized_text.append("[NoMatch]")
 
-        # Calculate times
-        inference_time = inference_end_time - inference_start_time
-        response_time = total_end_time - total_start_time
+    # Hook the events
+    speech_recognizer.recognized.connect(handle_final_result)
 
-        # Get system resource usage
-        cpu_usage, memory_usage = get_system_resource_usage()
+    # Measure timing
+    total_start_time = time.time()
+    inference_start_time = time.time()
 
-        # Process result
-        with open(result_file, "a") as f:
-            if result.reason == speechsdk.ResultReason.RecognizedSpeech:
-                f.write(f"Recognized Speech: {result.text}\n")
-                f.write(f"Audio Length: {audio_length:.2f} seconds\n")
-                f.write(f"Inference Time: {inference_time:.3f} seconds\n")
-                f.write(f"Response Time: {response_time:.3f} seconds\n")
-                f.write(f"CPU Usage: {cpu_usage}%\n")
-                f.write(f"Memory Usage: {memory_usage}%\n")
-                f.write("="*50 + "\n")
-            elif result.reason == speechsdk.ResultReason.NoMatch:
-                f.write(f"No speech could be recognized in {audio_file}\n")
-                f.write("="*50 + "\n")
-            elif result.reason == speechsdk.ResultReason.Canceled:
-                cancellation_details = result.cancellation_details
-                f.write(f"Speech Recognition canceled for {audio_file}: {cancellation_details.reason}\n")
-                if cancellation_details.reason == speechsdk.CancellationReason.Error:
-                    f.write(f"Error Details: {cancellation_details.error_details}\n")
-                f.write("="*50 + "\n")
+    # Start continuous recognition and wait for it to finish
+    done = False
+
+    def stop_cb(evt):
+        nonlocal done
+        done = True
+
+    speech_recognizer.session_stopped.connect(stop_cb)
+    speech_recognizer.canceled.connect(stop_cb)
+
+    speech_recognizer.start_continuous_recognition()
+    while not done:
+        time.sleep(0.5)
+    speech_recognizer.stop_continuous_recognition()
+
+    inference_end_time = time.time()
+    total_end_time = time.time()
+
+    inference_time = inference_end_time - inference_start_time
+    response_time = total_end_time - total_start_time
+
+    # Save results
+    with open(result_file, "a", encoding="utf-8") as f:
+        if recognized_text:
+            full_text = " ".join(recognized_text)
+            f.write(f"Recognized Speech: {full_text}\n")
+        else:
+            f.write(f"No speech could be recognized in {audio_file}\n")
+
+        f.write(f"Audio Length: {audio_length:.2f} seconds\n")
+        f.write(f"Inference Time: {inference_time:.3f} seconds\n")
+        f.write(f"Response Time: {response_time:.3f} seconds\n")
+        f.write("="*50 + "\n")
 
 # Main function
 if __name__ == "__main__":
-    result_file = "speech_recognition_results.txt"  # File to save the results
-
-    # Use platform-independent paths
+    result_file = "speech_recognition_results.txt"
     audio_folder = "AudioWAV"
-    audio_filenames = ["2sec.wav","10sec.wav","20sec.wav","30sec.wav","34sec.wav", "45sec.wav", "60sec.wav", "LDC2004S13.wav"]
+    audio_filenames = [
+        "2sec.wav", "10sec.wav", "20sec.wav", "30sec.wav",
+        "34sec.wav", "45sec.wav", "60sec.wav", "LDC2004S13.wav", "all.wav"
+    ]
     audio_files = [os.path.join(audio_folder, name) for name in audio_filenames]
 
-    # Clear previous results from the text file
+    # Clear previous results
     open(result_file, "w").close()
 
-    # Process selected audio files
     for audio_file in audio_files:
         if not os.path.exists(audio_file):
             print(f"⚠️ File not found: {audio_file}")
@@ -105,4 +105,3 @@ if __name__ == "__main__":
         recognize_speech(audio_file, result_file)
 
     print(f"✅ Results saved to {result_file}")
-
